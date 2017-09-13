@@ -20,4 +20,5 @@ o mayor a 21.
     Indicar si el jugador ganó un almuerzo de cortesía con un mensaje. También
   debe imprimir el total de puntos de cada ronda.
     Antes de salir del programa, este debe imprimir el total de jugadores y el
-  promedio de puntos obtenidos.
+  promedio de puntos obtenidos...
+  
