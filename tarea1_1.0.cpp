@@ -1,39 +1,49 @@
+//============================================================================
+// Name        : 2.cpp
+// Author      : 
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
 #include <iostream>
 #include <limits>
 
-
 int validaJugador();
 int validaPuntaje(int x);
-int unsigned jugadores;
-int puntaje[3] = {0,0,0};
-int granTotal = 0;
 
-int main()
-{
-    std::cout << "Ingrese el numero de participantes de esta ronda: " << std::flush;
-    jugadores = validaJugador();
-    int resultado[jugadores][3];
-    int totalJugador = 0;
+int main() {
+	int jugadores = 0;
 
-    for (unsigned i = 1; i <= jugadores; i++) {
-        for (unsigned j = 1; j < 4; j++) {
-        std::cout << "Jugador " << i << " Flecha " << j << ": " << std::flush;
-        puntaje[i] = validaPuntaje(resultado[i][j]);
-        }
-    totalJugador = puntaje[1] + puntaje[2] + puntaje[3];
-
-    std::cout << "El puntaje del Jugador # "  << i << " es: " << totalJugador << std::endl;
-        if (totalJugador >= 21){
-            std::cout << "Felicidades!!! has ganado un almuerzo de cortesia" << std::endl;
-            } else {
-                std::cout << "Tu puntaje es menor de 21. No has ganado un almuerzo esta vez" << std::endl;
-                }
-    granTotal = granTotal+totalJugador;
-    }
-    std::cout << "El total de puntos es: " << granTotal << std::endl;
-    std::cout << "El promedio de puntos por jugador es de: " << granTotal/jugadores << std::endl;
-    return 0;
+	int totalJugador;
+	int granTotal =0;
+	std::cout << "Ingrese el numero de participantes de esta ronda: " << std::flush;
+	jugadores = validaJugador();
+	int resultado[jugadores][4];
+	int puntos[jugadores][4];
+	std::cout << "Jugadores: " << jugadores << std::endl;
+	for (size_t i = 1; i <= jugadores; i++) {
+	totalJugador = 0;
+	  for (size_t j = 1; j < 4; j++) {
+	    std::cout << "Jugador # " << i << " Flecha # " << j << ": " << std::flush;
+	    puntos[i][j] = validaPuntaje(resultado[i][j]);
+	    totalJugador = totalJugador + puntos[i][j];
+	    granTotal = granTotal + puntos[i][j];
+	  }
+	  std::cout << "Total Jugador #" << i << ": " << totalJugador << std::endl;
+	  if (totalJugador >= 21){
+		  std::cout << "Felicidades Jugador # " << i << " has ganado un almuerzo de cortesia ! \n " << std::endl;
+	  } else {
+		  std::cout << "No has tenido suerte Jugador # " << i << " vuelve a intentar manana ! \n" << std::endl;
+	  }
+	}
+	std::cout << "Total de Puntos: " << granTotal << std::endl;
+	std::cout << "Promedio de puntos por jugador: " << granTotal/jugadores << std::endl;
+	return 0;
 }
+
+
+
 
 int validaJugador()
 {
@@ -64,9 +74,3 @@ int validaPuntaje(int x)
     return x;
 }
 
-
-void encabezado (){
-std::cout << "Bienvenido al Juego de la Finca Loca" << std::endl;
-std::cout << "Cada jugador tiene 3 flechas para lanzar a la diana" << std::endl;
-std::cout << "El jugador que obtenga 21 puntos o más ganará un almuerzo gratis" << std::endl;
-}
