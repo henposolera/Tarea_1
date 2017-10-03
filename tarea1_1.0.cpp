@@ -8,16 +8,18 @@
 
 #include <iostream>
 #include <limits>
+#include <iomanip>
 
 int validaJugador();
-int validaPuntaje(int x);
+int validaPuntaje(int puntaje);
+void encabezado();
 
 int main() {
 	int jugadores = 0;
-
 	int totalJugador;
 	int granTotal =0;
-	std::cout << "Ingrese el numero de participantes de esta ronda: " << std::flush;
+
+	encabezado();
 	jugadores = validaJugador();
 	int resultado[jugadores][4];
 	int puntos[jugadores][4];
@@ -38,12 +40,22 @@ int main() {
 	  }
 	}
 	std::cout << "Total de Puntos: " << granTotal << std::endl;
-	std::cout << "Promedio de puntos por jugador: " << granTotal/jugadores << std::endl;
+	double promedio;
+	promedio = double(granTotal)/double(jugadores);
+	std::cout << "Promedio de puntos por jugador: " << std::setprecision(4) <<  promedio << std::endl;
+
 	return 0;
 }
 
 
-
+void encabezado(){
+std::cout << "----------------------------------------------------------------------------\n";
+std::cout << "-----------   Bienvenido al Juego de la Finca Loca -------------------------\n";
+std::cout << "---------- Cada jugador tiene 3 flechas para lanzar a la diana -------------\n";
+std::cout << "----- El jugador que obtenga 21 puntos o más ganará un almuerzo gratis -----\n";
+std::cout << "----------------------------------------------------------------------------\n";
+std::cout << "Ingrese el numero de participantes de esta ronda: " << std::flush;
+}
 
 int validaJugador()
 {
@@ -60,17 +72,18 @@ int validaJugador()
     return x;
 }
 
-int validaPuntaje(int x)
+int validaPuntaje(int puntaje)
 {
-    std::cin >> x;
-    while((std::cin.fail()) || (x <= 0) || (x > 10))
+    std::cin >> puntaje;
+    while((std::cin.fail()) || (puntaje <= 0) || (puntaje > 10))
     {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         std::cout << "Error: Solo se permiten numeros del 1 al 10" << std::endl;
         std::cout << "Vuelva a Ingresar el valor de la flecha: " << std::flush;
-        std::cin >> x;
+        std::cin >> puntaje;
     }
-    return x;
+    return puntaje;
 }
+
 
